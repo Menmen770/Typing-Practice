@@ -4,7 +4,7 @@ namespace TypingPractice
 {
     public class Player
     {
-        public string Name { get; set; }
+        public string Name { get; }
         public int TotalGames { get; private set; }
         public int TotalWPM { get; private set; }
         public int BestWPM { get; private set; }

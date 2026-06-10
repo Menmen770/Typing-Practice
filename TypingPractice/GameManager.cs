@@ -139,40 +139,6 @@ namespace TypingPractice
 
 
 
-        // StartGame לתאימות לאחור (טוען + מתחיל מיד)
-
-        public void StartGame(int seconds, string level, TextCategory category, TextMode mode)
-
-        {
-
-            PrepareGame(seconds, level, category, mode);
-
-            BeginTimer();
-
-        }
-
-
-
-        public void StartGame(int seconds, string level, TextCategory category)
-
-        {
-
-            StartGame(seconds, level, category, CurrentMode);
-
-        }
-
-
-
-        public void StartGame(int seconds, string level)
-
-        {
-
-            StartGame(seconds, level, CurrentCategory, CurrentMode);
-
-        }
-
-
-
         public void Tick()
 
         {
@@ -293,13 +259,7 @@ namespace TypingPractice
 
 
 
-        // תאימות לאחור
-
-        public int PassageIndex => lineIndex;
-
-        public int PassageTotal => LineTotal;
-
-
+        public string[] LoadPassageLines(string filename) => library.LoadPassageLines(filename);
 
         public string[] GetUpcomingLines(int count)
 
@@ -366,16 +326,6 @@ namespace TypingPractice
             IsRunning = false;
 
             IsReady   = false;
-
-        }
-
-
-
-        public CharState[] GetCharStates(string typed)
-
-        {
-
-            return GetCharStates(CurrentText, typed);
 
         }
 

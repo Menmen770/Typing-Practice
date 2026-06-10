@@ -55,7 +55,7 @@ namespace TypingPractice
 
             if (degrees > 0)
             {
-                using (Pen arcPen = new Pen(ColorFull, thickness)
+                using (Pen arcPen = new Pen(arcColor, thickness)
                        { StartCap = LineCap.Round, EndCap = LineCap.Round })
                 {
                     g.DrawArc(arcPen, rect, -90f, degrees);

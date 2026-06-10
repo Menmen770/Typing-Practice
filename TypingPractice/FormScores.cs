@@ -1,6 +1,4 @@
 using System;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace TypingPractice
@@ -10,20 +8,9 @@ namespace TypingPractice
         public FormScores()
         {
             InitializeComponent();
-            LoadIcon();
+            AppAssets.LoadFormIcon(this);
             ScoreTableHelper.MountTable(panelTable, gridScores, showPlayer: true);
             LoadScores();
-        }
-
-        private void LoadIcon()
-        {
-            try
-            {
-                string path = Path.Combine(Application.StartupPath, "TypingPractice.ico");
-                if (File.Exists(path))
-                    Icon = new Icon(path);
-            }
-            catch { }
         }
 
         private void LoadScores()

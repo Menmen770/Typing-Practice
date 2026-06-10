@@ -33,32 +33,8 @@ namespace TypingPractice
         {
 
             InitializeComponent();
-
-            LoadIcon();
-
+            AppAssets.LoadFormIcon(this);
             LoadSettings();
-
-        }
-
-
-
-        private void LoadIcon()
-
-        {
-
-            try
-
-            {
-
-                string path = Path.Combine(Application.StartupPath, "TypingPractice.ico");
-
-                if (File.Exists(path))
-
-                    this.Icon = new Icon(path);
-
-            }
-
-            catch { }
 
         }
 
@@ -128,7 +104,7 @@ namespace TypingPractice
 
                 {
 
-                    // תאימות לגרסה ישנה: 0=30ש, 1=60ש, 2=90ש
+                    // ÿÿÿÿÿÿ ÿÿÿÿÿ ÿÿÿÿ: 0=30ÿ, 1=60ÿ, 2=90ÿ
 
                     if (value >= 0 && value <= 2)
 

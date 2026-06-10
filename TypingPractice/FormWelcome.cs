@@ -1,6 +1,4 @@
 using System;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace TypingPractice
@@ -12,27 +10,8 @@ namespace TypingPractice
         public FormWelcome()
         {
             InitializeComponent();
-            LoadAssets();
-        }
-
-        private void LoadAssets()
-        {
-            string dir = Application.StartupPath;
-            try
-            {
-                string iconPath = Path.Combine(dir, "TypingPractice.ico");
-                if (File.Exists(iconPath))
-                    this.Icon = new Icon(iconPath);
-            }
-            catch { }
-
-            try
-            {
-                string logoPath = Path.Combine(dir, "Resources", "logo.png");
-                if (File.Exists(logoPath))
-                    logoPicture.Image = Image.FromFile(logoPath);
-            }
-            catch { }
+            AppAssets.LoadFormIcon(this);
+            AppAssets.LoadLogo(logoPicture);
         }
 
         private void btnStart_Click(object sender, EventArgs e)

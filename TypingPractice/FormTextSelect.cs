@@ -1,6 +1,4 @@
 using System;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace TypingPractice
@@ -14,20 +12,9 @@ namespace TypingPractice
         public FormTextSelect(TextCategory category)
         {
             InitializeComponent();
-            LoadIcon();
+            AppAssets.LoadFormIcon(this);
             this.category = category;
             LoadTexts();
-        }
-
-        private void LoadIcon()
-        {
-            try
-            {
-                string path = Path.Combine(Application.StartupPath, "TypingPractice.ico");
-                if (File.Exists(path))
-                    this.Icon = new Icon(path);
-            }
-            catch { }
         }
 
         private void LoadTexts()

@@ -1,6 +1,5 @@
 using System;
 using System.Drawing;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -23,7 +22,7 @@ namespace TypingPractice
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
         private Player currentPlayer;
-        private string selectedLevel          = "בינוני";
+        private string selectedLevel          = "ÿÿÿÿÿÿ";
         private int selectedTime              = 30;
         private TextCategory selectedCategory = TextCategory.Hebrew;
         private TextMode     selectedMode     = TextMode.Sentences;
@@ -44,10 +43,10 @@ namespace TypingPractice
             accCircle.BringToFront();
             SetupTimer();
             SetupTooltips();
-            LoadAssets();
-            lblPlayer.Text = "שחקן: " + currentPlayer.Name;
+            AppAssets.LoadFormIcon(this);
+            lblPlayer.Text = "ÿÿÿÿ: " + currentPlayer.Name;
             UpdateLevelMenuChecks();
-            SetCategory(TextCategory.Hebrew, "עברית");
+            SetCategory(TextCategory.Hebrew, "ÿÿÿÿÿ");
         }
 
         private void SetupTimer()
@@ -73,26 +72,15 @@ namespace TypingPractice
                 null, control, new object[] { true });
         }
 
-        private void LoadAssets()
-        {
-            try
-            {
-                string iconPath = Path.Combine(Application.StartupPath, "TypingPractice.ico");
-                if (File.Exists(iconPath))
-                    this.Icon = new System.Drawing.Icon(iconPath);
-            }
-            catch { }
-        }
-
         private void SetupTooltips()
         {
             ToolTip tt = new ToolTip();
-            tt.SetToolTip(btnPause,    "עצור / המשך את המשחק");
-            tt.SetToolTip(btnRestart,  "טען טקסט חדש / התחל מחדש");
-            tt.SetToolTip(btnMute,     "השתק / הפעל צלילים");
-            tt.SetToolTip(btnScores,   "טבלת 10 השיאים הכללית");
-            tt.SetToolTip(btnMyScores, "כל התוצאות שלך");
-            tt.SetToolTip(btnSettings, "שנה הגדרות משחק");
+            tt.SetToolTip(btnPause,    "ÿÿÿÿ / ÿÿÿÿ ÿÿ ÿÿÿÿÿ");
+            tt.SetToolTip(btnRestart,  "ÿÿÿ ÿÿÿÿ ÿÿÿ / ÿÿÿÿ ÿÿÿÿ");
+            tt.SetToolTip(btnMute,     "ÿÿÿÿ / ÿÿÿÿ ÿÿÿÿÿÿ");
+            tt.SetToolTip(btnScores,   "ÿÿÿÿ 10 ÿÿÿÿÿÿ ÿÿÿÿÿÿ");
+            tt.SetToolTip(btnMyScores, "ÿÿ ÿÿÿÿÿÿÿ ÿÿÿ");
+            tt.SetToolTip(btnSettings, "ÿÿÿ ÿÿÿÿÿÿ ÿÿÿÿ");
         }
 
         private void GameTimer_Tick(object sender, EventArgs e)
@@ -105,7 +93,7 @@ namespace TypingPractice
                 EndGame();
         }
 
-        // טוען טקסט חדש — הטיימר יתחיל רק עם הלחיצה הראשונה הנכונה
+        // ÿÿÿÿ ÿÿÿÿ ÿÿÿ ÿ ÿÿÿÿÿÿ ÿÿÿÿÿ ÿÿ ÿÿ ÿÿÿÿÿÿ ÿÿÿÿÿÿÿ ÿÿÿÿÿÿ
         private void PrepareGame()
         {
             if (selectedMode == TextMode.Passage && passageLines != null)
@@ -120,12 +108,12 @@ namespace TypingPractice
             timerCircle.SetTime(selectedTime, selectedTime);
             wpmCircle.SetValue(0);
             accCircle.SetValue(100);
-            lblPlayer.Text    = "שחקן: " + currentPlayer.Name;
+            lblPlayer.Text    = "ÿÿÿÿ: " + currentPlayer.Name;
             cursorOn           = true;
             gamePaused         = false;
             blinkTimer.Start();
             btnPause.Enabled   = false;
-            btnPause.Text      = "?  עצור";
+            btnPause.Text      = "?  ÿÿÿÿ";
             btnRestart.Enabled = true;
             txtInput.Focus();
         }
@@ -136,7 +124,7 @@ namespace TypingPractice
 
             manager.UpdateTyping(txtInput.Text);
 
-            // הפעל טיימר על הלחיצה הראשונה הנכונה
+            // ÿÿÿÿ ÿÿÿÿÿ ÿÿ ÿÿÿÿÿÿ ÿÿÿÿÿÿÿ ÿÿÿÿÿÿ
             if (manager.IsReady && txtInput.Text.Length > 0 &&
                 txtInput.Text[0] == manager.CurrentText[0])
             {
@@ -203,12 +191,12 @@ namespace TypingPractice
             soundManager.Muted = !soundManager.Muted;
             if (soundManager.Muted)
             {
-                btnMute.Text      = "??  השתק";
+                btnMute.Text      = "??  ÿÿÿÿ";
                 btnMute.ForeColor = Color.FromArgb(185, 185, 185);
             }
             else
             {
-                btnMute.Text      = "??  קול";
+                btnMute.Text      = "??  ÿÿÿ";
                 btnMute.ForeColor = Color.FromArgb(80, 80, 80);
             }
         }
@@ -233,14 +221,14 @@ namespace TypingPractice
             {
                 rtbText.Clear();
                 rtbText.SelectionColor = Color.Gray;
-                rtbText.AppendText("לחץ התחל כדי להתחיל");
+                rtbText.AppendText("ÿÿÿ ÿÿÿÿ ÿÿÿ ÿÿÿÿÿÿ");
                 lblProgress.Visible = false;
                 return;
             }
 
             rtbText.Clear();
 
-            // ?? שורות שכבר הושלמו (מעל) ???????????????????????????????
+            // ?? ÿÿÿÿÿ ÿÿÿÿ ÿÿÿÿÿÿ (ÿÿÿ) ???????????????????????????????
             CompletedLine[] prev = manager.GetPreviousLines(2);
             foreach (CompletedLine line in prev)
             {
@@ -248,10 +236,10 @@ namespace TypingPractice
                 rtbText.AppendText("\n");
             }
 
-            // ?? שורה נוכחית (באמצע) עם צביעה ?????????????????????????
+            // ?? ÿÿÿÿ ÿÿÿÿÿÿ (ÿÿÿÿÿ) ÿÿ ÿÿÿÿÿ ?????????????????????????
             AppendColoredLine(manager.CurrentText, typed, isCurrent: true);
 
-            // ?? שורות הבאות (מתחת) ????????????????????????????????????
+            // ?? ÿÿÿÿÿ ÿÿÿÿÿ (ÿÿÿÿ) ????????????????????????????????????
             string[] upcoming = manager.GetUpcomingLines(3);
             for (int i = 0; i < upcoming.Length; i++)
             {
@@ -347,7 +335,7 @@ namespace TypingPractice
             gamePaused = false;
             manager.StopGame();
             btnPause.Enabled = false;
-            btnPause.Text    = "?  עצור";
+            btnPause.Text    = "?  ÿÿÿÿ";
             txtInput.Enabled = false;
 
             int wpm      = manager.GetWPM();
@@ -360,11 +348,11 @@ namespace TypingPractice
             ScoreStore.SaveGame(score);
 
             MessageBox.Show(
-                "סיימת!\n" +
+                "ÿÿÿÿÿ!\n" +
                 "WPM: " + wpm + "\n" +
-                "דיוק: " + accuracy + "%\n" +
-                "רמה: " + selectedLevel,
-                "תוצאה",
+                "ÿÿÿÿ: " + accuracy + "%\n" +
+                "ÿÿÿ: " + selectedLevel,
+                "ÿÿÿÿÿ",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
@@ -391,7 +379,7 @@ namespace TypingPractice
             }
         }
 
-        // ?? בחירת קטגוריה מה-MenuStrip ????????????????????????????????
+        // ?? ÿÿÿÿÿ ÿÿÿÿÿÿÿ ÿÿ-MenuStrip ????????????????????????????????
         private string GetCategoryName()
         {
             string text = lblCategory.Text;
@@ -402,16 +390,16 @@ namespace TypingPractice
         private void SetCategoryLabel(string categoryName)
         {
             if (selectedMode == TextMode.Sentences)
-                lblCategory.Text = categoryName + " | משפטים — " + selectedLevel;
+                lblCategory.Text = categoryName + " | ÿÿÿÿÿÿ ÿ " + selectedLevel;
             else
                 lblCategory.Text = categoryName;
         }
 
         private void UpdateLevelMenuChecks()
         {
-            menuLevelEasy.Checked   = selectedLevel == "קל";
-            menuLevelMedium.Checked = selectedLevel == "בינוני";
-            menuLevelHard.Checked   = selectedLevel == "קשה";
+            menuLevelEasy.Checked   = selectedLevel == "ÿÿ";
+            menuLevelMedium.Checked = selectedLevel == "ÿÿÿÿÿÿ";
+            menuLevelHard.Checked   = selectedLevel == "ÿÿÿ";
         }
 
         private void SetCategory(TextCategory category, string displayName)
@@ -442,9 +430,9 @@ namespace TypingPractice
             PrepareGame();
         }
 
-        private void menuLevelEasy_Click(object sender, EventArgs e)   => SetSentencesLevel("קל");
-        private void menuLevelMedium_Click(object sender, EventArgs e) => SetSentencesLevel("בינוני");
-        private void menuLevelHard_Click(object sender, EventArgs e)   => SetSentencesLevel("קשה");
+        private void menuLevelEasy_Click(object sender, EventArgs e)   => SetSentencesLevel("ÿÿ");
+        private void menuLevelMedium_Click(object sender, EventArgs e) => SetSentencesLevel("ÿÿÿÿÿÿ");
+        private void menuLevelHard_Click(object sender, EventArgs e)   => SetSentencesLevel("ÿÿÿ");
 
         private void menuPassage_Click(object sender, EventArgs e)
         {
@@ -454,21 +442,20 @@ namespace TypingPractice
                           selectedCategory != TextCategory.English;
             if (isCode)
             {
-                MessageBox.Show("קטע ספרותי זמין רק בעברית ואנגלית.",
-                                "שים לב", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("ÿÿÿ ÿÿÿÿÿÿ ÿÿÿÿ ÿÿ ÿÿÿÿÿÿ ÿÿÿÿÿÿÿ.",
+                                "ÿÿÿ ÿÿ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             FormTextSelect fs = new FormTextSelect(selectedCategory);
             if (fs.ShowDialog(this) == DialogResult.OK)
             {
-                TextLibrary lib = new TextLibrary();
-                passageLines = lib.LoadPassageLines(fs.SelectedText.Filename);
+                passageLines = manager.LoadPassageLines(fs.SelectedText.Filename);
                 SetMode(TextMode.Passage, fs.SelectedText.DisplayName);
             }
         }
 
-        private void menuGibberish_Click(object sender, EventArgs e) => SetMode(TextMode.Gibberish, "בלגן");
+        private void menuGibberish_Click(object sender, EventArgs e) => SetMode(TextMode.Gibberish, "ÿÿÿÿ");
 
         private void btnPause_Click(object sender, EventArgs e)
         {
@@ -479,12 +466,12 @@ namespace TypingPractice
             {
                 gameTimer.Stop();
                 blinkTimer.Stop();
-                btnPause.Text    = "?  המשך";
+                btnPause.Text    = "?  ÿÿÿÿ";
                 txtInput.Enabled = false;
             }
             else
             {
-                btnPause.Text    = "?  עצור";
+                btnPause.Text    = "?  ÿÿÿÿ";
                 txtInput.Enabled = true;
                 gameTimer.Start();
                 blinkTimer.Start();
@@ -498,12 +485,12 @@ namespace TypingPractice
             blinkTimer.Stop();
             manager.StopGame();
             btnPause.Enabled = false;
-            btnPause.Text    = "?  עצור";
+            btnPause.Text    = "?  ÿÿÿÿ";
             PrepareGame();
         }
 
-        private void menuEnglish_Click(object sender, EventArgs e)    => SetCategory(TextCategory.English,    "אנגלית");
-        private void menuHebrew_Click(object sender, EventArgs e)     => SetCategory(TextCategory.Hebrew,     "עברית");
+        private void menuEnglish_Click(object sender, EventArgs e)    => SetCategory(TextCategory.English,    "ÿÿÿÿÿÿ");
+        private void menuHebrew_Click(object sender, EventArgs e)     => SetCategory(TextCategory.Hebrew,     "ÿÿÿÿÿ");
         private void menuPython_Click(object sender, EventArgs e)     => SetCategory(TextCategory.Python,     "Python");
         private void menuCSharp_Click(object sender, EventArgs e)     => SetCategory(TextCategory.CSharp,     "C#");
         private void menuCpp_Click(object sender, EventArgs e)        => SetCategory(TextCategory.Cpp,        "C++");

@@ -4,11 +4,11 @@ namespace TypingPractice
 {
     public class Score
     {
-        public string PlayerName { get; set; }
-        public int WPM { get; set; }
-        public int Accuracy { get; set; }
-        public string Level { get; set; }
-        public DateTime Date { get; set; }
+        public string PlayerName { get; }
+        public int WPM { get; }
+        public int Accuracy { get; }
+        public string Level { get; }
+        public DateTime Date { get; }
 
         public Score(string playerName, int wpm, int accuracy, string level)
         {
@@ -29,12 +29,5 @@ namespace TypingPractice
             Date = d;
         }
 
-        public string ToDisplayString()
-        {
-            return PlayerName + " | WPM: " + WPM +
-                   " | דיוק: " + Accuracy + "%" +
-                   " | " + Level +
-                   " | " + Date.ToString("dd/MM/yyyy");
-        }
     }
 }

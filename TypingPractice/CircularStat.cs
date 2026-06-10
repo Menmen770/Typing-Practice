@@ -7,10 +7,9 @@ namespace TypingPractice
 {
     public class CircularStat : PictureBox
     {
-        private int    _value    = 0;
-        private int    _max      = 100;
-        private string _label    = "";
-        private Color  _arcColor = Color.FromArgb(70, 180, 130);
+        private int   _value    = 0;
+        private int   _max      = 100;
+        private Color _arcColor = Color.FromArgb(70, 180, 130);
 
         private static readonly Color ColorTrack = Color.FromArgb(220, 220, 220);
 
@@ -22,10 +21,9 @@ namespace TypingPractice
             this.DoubleBuffered = true;
         }
 
-        public void Initialize(int max, string label, Color arcColor)
+        public void Initialize(int max, Color arcColor)
         {
             _max      = max > 0 ? max : 1;
-            _label    = label;
             _arcColor = arcColor;
         }
 
