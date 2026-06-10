@@ -1,0 +1,22 @@
+# Build
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+# packages/ is committed — project uses direct HintPath references
+
+# Local game data
+**/scores.dat
+**/my_scores.dat
+**/settings.txt
+
+# Windows
+Thumbs.db
+Desktop.ini
